@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Modifying Example</title>
+    <style>
+        .highlight{
+            background-color: yellow;
+            font-weight: bold;
+        }
+        .inactive{
+            opacity: 1;
+        }
+        .selected{
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="mainTitle">Original Title</h1>
+    <img id="mainImage" src="./photo_2024-12-24_02-59-36.jpg" alt="Devops" width="500" height="200">
+
+    <p class="info">Paragraph 1</p>
+    <p class="info">Paragraph 2</p>
+
+    <a id="mainLink" href="#">Old Link</a>
+
+    <script>
+        //Selecting elements
+        const title = document.getElementById('mainTitle')
+        const image = document.getElementById('mainImage');
+        const paragraphs = document.getElementsByClassName('info');
+        const link = document.getElementById('mainLink'); 
+
+        //1. Changing content
+        title.textContent = "Welcome to my page";
+        
+        //we use indices when trying to modify the class
+        //it is easier for XSS to happen when using inner html
+        paragraphs[0].innerHTML = '<strong> Paragraph 1 is now bold </strong>';
+
+
+        // 2. Changing attribute
+        const oldSrc = image.getAttribute("src");
+        image.setAttribute("src", "./tendaP4.png");
+        link.setAttribute("href", "https://powerlearnprojectafrica.org");
+
+        //3. Modifying CSS styles
+        title.style.color = "blue";
+        title.style.fontSize = "123px";
+        title.style.backgroundColor = "Lightgray";
+        title.style.borderRadius = "20px";
+        image.style.border = "2px solid red";
+
+        //4. Modifying Classes
+        paragraphs[0].classList.add("highlight");
+        paragraphs[1].classList.remove("inactive");
+
+        link.classList.toggle("selected");
+
+
+        //checking if and element has a specific class
+        
+    </script>
+</body>
+</html>
